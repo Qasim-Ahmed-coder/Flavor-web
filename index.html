@@ -3,25 +3,396 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Flavor - Restaurant Website Template</title>
     <style>
-nav{
-    position:sticky
+        /* Basic Reset & Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #fff;
+        }
 
-}
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
+        ul {
+            list-style: none;
+        }
 
+        /* Header & Navigation */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.4);
+        }
 
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffc107;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            font-size: 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffc107;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+
+        .btn {
+            background-color: #ffc107;
+            color: #111;
+            padding: 12px 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e0a800;
+        }
+
+        /* Section Commons */
+        section {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .section-title p {
+            color: #777;
+            font-size: 16px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Menu Section */
+        .menu-section {
+            background-color: #f9f9f9;
+            max-width: 100%;
+            padding: 80px 10%;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-item {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-item h4 {
+            font-size: 20px;
+            margin: 15px 0 5px;
+            color: #222;
+        }
+
+        .menu-item p {
+            color: #666;
+            font-size: 14px;
+            padding: 0 15px;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #ffc107;
+            font-size: 18px;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 6px;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Reservation Section */
+        .reservation {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1559339352-11d035aa65de') no-repeat center center/cover;
+            color: #fff;
+            max-width: 100%;
+            padding: 80px 10%;
+            text-align: center;
+        }
+
+        .reservation form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .reservation input, .reservation select {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: #aaa;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin-top: 10px;
+            color: #777;
+        }
     </style>
 </head>
 <body>
-    <nav>
-<h1>Atelier</h1>
-<p>studio</p>
 
-    </nav>
-    <strong>TRANSFORMING Spaces Into Extaordinary Experience. </strong>
-<p></p>
+    <!-- Header & Nav -->
+    <header>
+        <div class="logo">Flavor</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Welcome to Flavor</h1>
+        <p>Experience exquisite fine dining with breathtaking views and unforgettable culinary masterpieces.</p>
+        <a href="#reservation" class="btn">Book a Table</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-title">
+            <h2>Our Story</h2>
+            <p>Tradition meets modern elegance</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Fresh Ingredients & Passionate Chefs</h3>
+                <p>At Flavor, we believe that great food starts with exceptional ingredients sourced locally and globally. Our kitchen is driven by passion, creativity, and deep respect for culinary traditions.</p>
+                <p>Join us for an intimate dinner, a family celebration, or a relaxing sunset meal by the water.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141" alt="Fine Dining Experience">
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <div id="menu" class="menu-section">
+        <div class="section-title">
+            <h2>Delicious Menu</h2>
+            <p>Handcrafted dishes made to perfection</p>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0" alt="Truffle Risotto">
+                <h4>Truffle Risotto</h4>
+                <p>Creamy Italian arborio rice infused with rich black truffle and aged parmesan shavings.</p>
+                <span class="price">$24.00</span>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371" alt="Steak Tagliatelle">
+                <h4>Steak Tagliatelle</h4>
+                <p>Tender beef strips tossed with handmade ribbon pasta, cherry tomatoes, and mushrooms.</p>
+                <span class="price">$28.00</span>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601" alt="Pesto Farfalle">
+                <h4>Pesto Farfalle</h4>
+                <p>Bowtie pasta tossed in vibrant basil pesto, fresh baby greens, and ripe cherry tomatoes.</p>
+                <span class="price">$20.00</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="section-title">
+            <h2>Photo Gallery</h2>
+            <p>A glimpse into our ambiance and dishes</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Terrace View"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de" alt="Risotto Close-up"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141" alt="Pasta Pan"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0" alt="Interior Dining"></div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <div id="reservation" class="reservation">
+        <div class="section-title" style="color: #fff;">
+            <h2 style="color: #fff;">Make a Reservation</h2>
+            <p style="color: #ddd;">Secure your table for an exceptional dining experience</p>
+        </div>
+        <form>
+            <div class="form-row">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-row">
+                <input type="date" required>
+                <input type="time" required>
+            </div>
+            <div class="form-row">
+                <select>
+                    <option>1 Person</option>
+                    <option>2 Persons</option>
+                    <option>4 Persons</option>
+                    <option>6+ Persons</option>
+                </select>
+                <button type="submit" class="btn" style="flex:1;">Confirm Booking</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h3>Flavor Restaurant</h3>
+        <p>&copy; 2026 Flavor. All Rights Reserved.</p>
+    </footer>
+
 </body>
 </html>
